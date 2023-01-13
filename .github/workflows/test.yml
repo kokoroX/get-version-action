@@ -9,6 +9,6 @@ jobs:
   test-get-version:
     runs-on: ubuntu-latest
     steps:
-      - uses: 0xTeams/get-version-action@main
+      - uses: kokoroX/get-version-action@main
         id: get-version
       - run: echo ${{ steps.get-version.outputs.version }}
