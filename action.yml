@@ -13,6 +13,7 @@ runs:
         length: 8
     - id: version-generator
       run: |
+        export TZ='Asia/Shanghai'
         DATE=$(date +'%Y%m%d')
         echo "version=$DATE-${{ github.ref_name }}-${{ steps.short-sha.outputs.sha }}" >> $GITHUB_OUTPUT
       shell: bash
