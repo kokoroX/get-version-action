@@ -8,7 +8,7 @@ inputs:
 outputs:
   version:
     description: "个人规则版本号"
-    value: ${{ steps.version-generator.outputs.version }}
+    value: ${{ steps.version-generator-default.outputs.version || steps.version-generator-input.outputs.version }}
 runs:
   using: "composite"
   steps:
