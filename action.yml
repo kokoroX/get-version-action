@@ -17,20 +17,24 @@ runs:
       with:
         length: 8
     - id: version-generator-default
+      name: version-generator-default
       if: ${{ inputs.date == null }}
       run: |
         export TZ='Asia/Shanghai'
         DATE=$(date +'%Y%m%d')
+        echo "$DATE"
         export ORIGIN_REF_NAME=${{ github.ref_name }}
         export REF_NAME=${ORIGIN_REF_NAME//\//\_}
         echo "version=$DATE-$REF_NAME-${{ steps.short-sha.outputs.sha }}" >> $GITHUB_OUTPUT
       shell: bash
     - id: version-generator-input
+      name: version-generator-input
       if: ${{ inputs.date != null }}
       run: |
         export TZ='Asia/Shanghai'
         USE_DATE="${{ inputs.date }}"
         DATE=$(date -d $USE_DATE +"%Y%m%d")
+        echo "$DATE"
         export ORIGIN_REF_NAME=${{ github.ref_name }}
         export REF_NAME=${ORIGIN_REF_NAME//\//\_}
         echo "version=$DATE-$REF_NAME-${{ steps.short-sha.outputs.sha }}" >> $GITHUB_OUTPUT
